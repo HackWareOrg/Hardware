@@ -11,7 +11,7 @@
 
 ## Diagram
 
-[Diagram](Sound_Schematic.png)
+![Diagram](Sound_Schematic.png)
   
 
 ## Functions
