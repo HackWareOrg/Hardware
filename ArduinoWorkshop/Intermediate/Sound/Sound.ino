@@ -25,16 +25,16 @@ void setup() {
 
 // the loop function runs over and over again forever
 void loop() {
-  // playNote('B', 0, 5); // play a musical note.
-  // delay(1000);
-  // setFreq(500); // set frequency manually.
-  // delay(1000);
-  // turnOff(); // stop playing sounds.
-  // delay(1000);
-  // playNoteTime('C', 1, 4, 1000); // play note for duration.
-  // delay(1000);
-  // playTheme1();
-  // delay(1000);
+//  playNote('B', 0, 5); // play a musical note.
+//  delay(1000);
+//  setFreq(500); // set frequency manually.
+//  delay(1000);
+//  turnOff(); // stop playing sounds.
+//  delay(1000);
+//  playNoteTime('C', 1, 4, 1000); // play note for duration.
+//  delay(1000);
+//  playTheme1();
+//  delay(1000);
   readNote(); // read notes from serial monitor.
 }
 
@@ -42,11 +42,13 @@ bool pinState = LOW;
 int freqCounter = 0;
 unsigned int onTime, offTime = 0;
 
+// Timer1 Interrupt. Will run every 20us.
 ISR(TIMER1_COMPA_vect)
 {
-  // turn it off.
+  // turn off speaker.
   if (onTime == 0) {
       digitalWrite(SPEAKER_PIN, LOW);
+      freqCounter = 0;
   }
   // start next cycle.
   else if (freqCounter <= 0) {
@@ -79,7 +81,7 @@ void setFreq(float freq) {
 
 // turn off sound.
 void turnOff() {
-  setFreq(0);
+  playNote('0', 0, 0);
 }
 
 
@@ -107,6 +109,11 @@ const float Bs = C * 2;
 const float Cb = B;
 /////////// end notes //////////
 
+/* Play a note continously.
+ *  char note: pitch of note to be played. Possible values 'A', 'B', 'C', 'D', 'E', 'F', 'G'
+ *  unsigned int mod: 0 for natural, 1 for sharp, 2 for flat
+ *  unsigned int octave: octave of the note to be played. Possible values 0-10.
+ */
 void playNote(char note, unsigned int mod, unsigned int octave) {
   float ret;
   if (octave > 10) {
@@ -235,6 +242,12 @@ void playNote(char note, unsigned int mod, unsigned int octave) {
   setFreq(ret * pow(2, octave));
 }
 
+/* Play a note for a given duration.
+ * char note: same as playNote.
+ * unsigned int mod: same as playNote.
+ * unsigned int octave: same as playNote.
+ * unsigned int durationMS: duration in milliseconds to play the note.
+ */
 void playNoteTime(char note, unsigned int mod, unsigned int octave, unsigned int durationMS) {
   playNote(note, mod, octave);
   delay(durationMS);
@@ -268,7 +281,7 @@ unsigned int readNote() {
   playNote(note, mod, octave);
 }
 
-// Imperial March from http://www.musicnotes.com/sheetmusic/mtd.asp?ppn=MN0017607
+// Imperial March measures 1-4 from http://www.musicnotes.com/sheetmusic/mtd.asp?ppn=MN0017607
 void playTheme1() {
   int i = 0;
   // phrase 1
