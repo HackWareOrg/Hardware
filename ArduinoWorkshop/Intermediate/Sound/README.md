@@ -1,5 +1,6 @@
 # Arduino Intermediate Workshop - Sound
 
+- [Diagram](README.md#diagram)
 - [Functions](README.md#functions)
   - [readNote](README.md#readnote)
   - [playNote](README.md#playnote)
@@ -8,6 +9,10 @@
   - [turnOff](README.md#turnoff)
 
 
+## Diagram
+
+[Diagram](Sound_Schematic.png)
+  
 
 ## Functions
 
@@ -20,7 +25,7 @@ void readNote();
 
 Uses the Serial Monitor on the Arduino IDE to play notes.
 
-Each note is played by entering a letter corrosponding to a note followed by the octave to play.
+Each note is played by entering a letter corresponding to a note followed by the octave to play.
 - Available notes are: A, B, C, D, E, F, & G. 
 - Octaves are between 0 - 10.
 - Sharps and flats can be played by entering a 'b' or 's' after the note letter.
