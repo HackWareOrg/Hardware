@@ -1,11 +1,11 @@
 # Arduino Intermediate Workshop - Sound
 
-- [Functions](README.md#Functions)
-  - [readNote](README.md#readNote)
-  - [playNote](README.md#playNote)
-  - [playNoteTime](README.md#playNoteTime)
-  - [playFreq](README.md#playFreq)
-  - [turnOff](README.md#turnOff)
+- [Functions](README.md#functions)
+  - [readNote](README.md#readnote)
+  - [playNote](README.md#playnote)
+  - [playNoteTime](README.md#playnotetime)
+  - [playFreq](README.md#playfreq)
+  - [turnOff](README.md#turnoff)
 
 
 
